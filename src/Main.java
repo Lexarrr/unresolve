@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.Math.abs;
@@ -14,30 +13,25 @@ public class Main {
         Scanner sc = new Scanner(new File(inputFile));
         Writer wr = new FileWriter(outputFile);
 
-//        List<Character> validFirstChars = Arrays.asList('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h');
-
         while (sc.hasNextLine() && sc != null) {
             String s = sc.nextLine();
-            String[] a = s.split("");
-            System.out.println(Arrays.toString(a));
-            if (a.length != 5) {  // || a[2].equals("-")
+            String[] masStep = s.split("");
+            System.out.println(Arrays.toString(masStep));
+            if (masStep.length != 5 || masStep[0].equals(masStep[3])) {  // || masStep[2].equals("-")
                 wr.write("Error\n");
                 System.out.println("Error");
                 break;
             }
-            int b = Integer.parseInt(a[1]);
-            int c = Integer.parseInt(a[4]);
-            int d = a[0].compareTo(a[3]);
+            int b = Integer.parseInt(masStep[1]);
+            int c = Integer.parseInt(masStep[4]);
+            int d = masStep[0].compareTo(masStep[3]);
             System.out.println(d);
-//            if () {
-//                System.out.println("No");
-//            }
-            if (b - c != 2 || d != -1 || a[0].equals(a[3])) { //??
-                wr.write("No\n");
-                System.out.println("No");
-            } else {
+            if (b - c == 2 && d != -1 || b - c != 2 && d == -1) {
                 wr.write("Yes\n");
                 System.out.println("Yes");
+            } else {
+                wr.write("No\n");
+                System.out.println("No");
             }
         }
         wr.close();
