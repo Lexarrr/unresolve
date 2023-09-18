@@ -1,39 +1,62 @@
 import java.io.*;
-import java.util.Arrays;
 import java.util.Scanner;
-
-import static java.lang.Math.abs;
-
 
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        String inputFile = "input.txt";
-        String outputFile = "Output.txt";
-        Scanner sc = new Scanner(new File(inputFile));
-        Writer wr = new FileWriter(outputFile);
+        toCheckedStep(toScan(), toWrite());
+//        toWrite().close();
 
-        while (sc.hasNextLine() && sc != null) {
+    }
+
+    public static Scanner toScan() {
+        String inputFile = "input.txt";
+        Scanner sc;
+        try {
+            sc = new Scanner(new File(inputFile));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return sc;
+    }
+
+    public static Writer toWrite() {
+        String outputFile = "Output.txt";
+        Writer wr;
+        try {
+            wr = new FileWriter(outputFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return wr;
+    }
+
+    public static void toCheckedStep(Scanner sc, Writer wr) throws IOException {
+        while (sc.hasNextLine()) {
             String s = sc.nextLine();
             String[] masStep = s.split("");
-            System.out.println(Arrays.toString(masStep));
-            if (masStep.length != 5 || masStep[0].equals(masStep[3])) {  // || masStep[2].equals("-")
+//            for (char c: masStep.toCharArray()){
+//                if (((int)c)>127){
+//                    return false;
+//                }
+//            }
+//            return true;
+//            System.out.println(Arrays.toString(masStep));
+            if (masStep.length != 5) {  //masStep[0] > 51
                 wr.write("Error\n");
                 System.out.println("Error");
-                break;
-            }
-            int b = Integer.parseInt(masStep[1]);
-            int c = Integer.parseInt(masStep[4]);
-            int d = masStep[0].compareTo(masStep[3]);
-            System.out.println(d);
-            if (b - c == 2 && d != -1 || b - c != 2 && d == -1) {
-                wr.write("Yes\n");
-                System.out.println("Yes");
             } else {
-                wr.write("No\n");
-                System.out.println("No");
+                int parsFirstNum = Integer.parseInt(masStep[1]);
+                int parsSecNum = Integer.parseInt(masStep[4]);
+                int compareLet = masStep[0].compareTo(masStep[3]);
+                if (parsFirstNum - parsSecNum != 2 && compareLet == -1 || parsFirstNum - parsSecNum == 2 && compareLet != -1 || masStep[0].equals(masStep[3])) {
+                    wr.write("No\n");
+                    System.out.println("No");
+                } else {
+                    wr.write("Yes\n");
+                    System.out.println("Yes");
+                }
             }
         }
-        wr.close();
     }
 }
