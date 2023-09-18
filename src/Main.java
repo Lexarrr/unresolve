@@ -35,13 +35,7 @@ public class Main {
         while (sc.hasNextLine()) {
             String s = sc.nextLine();
             String[] masStep = s.split("");
-//            for (char c: masStep.toCharArray()){
-//                if (((int)c)>127){
-//                    return false;
-//                }
-//            }
-//            return true;
-//            System.out.println(Arrays.toString(masStep));
+
             if (masStep.length != 5) {  //masStep[0] > 51
                 wr.write("Error\n");
                 System.out.println("Error");
