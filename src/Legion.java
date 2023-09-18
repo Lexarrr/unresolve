@@ -36,7 +36,7 @@ public class Legion {
     public static int[] divMas(int[] mas) {
         int length = mas.length;
         if (length == 1) return mas;
-        double div = (double) length / 3;
+//        double div = (double) length / 3;
         if (length % 3 == 0) {
             System.out.println(length / 3);
         } else {
