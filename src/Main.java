@@ -49,6 +49,8 @@ public class Main {
                 } else {
                     wr.write("Yes\n");
                     System.out.println("Yes");
+
+                    // w / x, w / y, w / z
                 }
             }
         }

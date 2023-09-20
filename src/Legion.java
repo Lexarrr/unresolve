@@ -6,7 +6,8 @@ import java.util.Scanner;
 public class Legion {
     public static void main(String[] args) {
 
-        divMas(toGetMas(toScan()));
+//        divMas(toGetMas(toScan()));
+        toGetMas(toScan());
     }
 
     public static Scanner toScan() {
@@ -25,8 +26,9 @@ public class Legion {
 
         int[] masLeg = new int[num];
         int i = 0;
-        while (sc.hasNextInt()) {
-            masLeg[i++] = sc.nextInt();
+        int c = 1;
+        for (int j = 0; j < num; j++) {
+            masLeg[j] = c++;
         }
         System.out.println(Arrays.toString(masLeg));
 
@@ -35,21 +37,28 @@ public class Legion {
 
     public static int[] divMas(int[] mas) {
         int length = mas.length;
-        if (length == 1) return mas;
-        int ost = length % 3;
-//        double div = (double) length / 3;
-        if (ost == 0) {
-            System.out.println(length / 3);
-        } else {
-            int divide = length / 3;
-            ost = divide + ost;
-            int res = length - ost;
+        if (length == 3) return mas;
+        int divide = length / 2;
+        int[] rightMas = new int[length];
+        int[] leftMas = new int[length - divide];
+        for (int i = 0; i < mas.length; i++) {
+            if (mas[i] % 2 == 0){
+                for (int j = 0; j < divide; j++) {
+                    rightMas[j] = mas[i];
+                    System.out.println(Arrays.toString(rightMas));
+                }
 
-            System.out.println("ost: " + ost);
-//            System.out.println(divide);
-            System.out.println("колво групп по 3: " + res / 3);
+            }
+//
+//            for (int s = 0; s < divide; s++) leftMas[s] = mas[s];
+//            for (int s = 0; s < length - divide; s++)
+//                rightMas[s] = mas[s + divide];
         }
-        return mas;
+
+
+
+
+        return rightMas;
     }
 
 }
