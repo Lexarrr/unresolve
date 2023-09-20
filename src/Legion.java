@@ -36,13 +36,18 @@ public class Legion {
     public static int[] divMas(int[] mas) {
         int length = mas.length;
         if (length == 1) return mas;
+        int ost = length % 3;
 //        double div = (double) length / 3;
-        if (length % 3 == 0) {
+        if (ost == 0) {
             System.out.println(length / 3);
         } else {
-            int ost = length % 3;
-            int divide = length / 3 - ost;
-            System.out.println(divide);
+            int divide = length / 3;
+            ost = divide + ost;
+            int res = length - ost;
+
+            System.out.println("ost: " + ost);
+//            System.out.println(divide);
+            System.out.println("колво групп по 3: " + res / 3);
         }
         return mas;
     }
