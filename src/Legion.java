@@ -7,7 +7,8 @@ public class Legion {
     public static void main(String[] args) {
 
 //        divMas(toGetMas(toScan()));
-        toGetMas(toScan());
+//        toGetMas(toScan());
+        divMas(toGetMas(toScan()));
     }
 
     public static Scanner toScan() {
@@ -23,9 +24,7 @@ public class Legion {
 
     public static int[] toGetMas(Scanner sc) {
         int num = sc.nextInt();
-
         int[] masLeg = new int[num];
-        int i = 0;
         int c = 1;
         for (int j = 0; j < num; j++) {
             masLeg[j] = c++;
@@ -39,26 +38,61 @@ public class Legion {
         int length = mas.length;
         if (length == 3) return mas;
         int divide = length / 2;
-        int[] rightMas = new int[length];
-        int[] leftMas = new int[length - divide];
-        for (int i = 0; i < mas.length; i++) {
-            if (mas[i] % 2 == 0){
-                for (int j = 0; j < divide; j++) {
-                    rightMas[j] = mas[i];
-                    System.out.println(Arrays.toString(rightMas));
-                }
+        int rightpos = 0;
+        int leftpos = 0;
+        int rightcount = 0;
+        int leftcount = 0;
 
+        for (int i = 0; i < mas.length; i++) {
+            if (i % 2 == 0) {
+                rightcount++;
+            } else {
+                leftcount++;
             }
-//
-//            for (int s = 0; s < divide; s++) leftMas[s] = mas[s];
-//            for (int s = 0; s < length - divide; s++)
-//                rightMas[s] = mas[s + divide];
+        }
+        int[] rightMas = new int[rightcount];
+        int[] leftMas = new int[leftcount];
+
+        while (rightMas.length != 3 || leftMas.length != 3) {
+            for (int i = 0; i < mas.length; i++) {
+                if (i % 2 == 0) {
+                    rightMas[rightpos] = mas[i];
+                    rightpos++;
+                } else {
+                    leftMas[leftpos] = mas[i];
+                    leftpos++;
+                }
+            }
         }
 
+//        while (rightMas.length != 3 || leftMas.length != 3){
+//            for (int i = 0; i < rightMas.length; i++) {
+//                if (i % 2 == 0) {
+//                    rightMas[rightpos] = mas[i];
+//                    rightpos++;
+//                } else {
+//                    leftMas[leftpos] = mas[i];
+//                    leftpos++;
+//                }
+//
+//            }
+//            for (int i = 0; i < leftMas.length; i++) {
+//                if (i % 2 == 0) {
+//                    rightMas[rightpos] = mas[i];
+//                    rightpos++;
+//                } else {
+//                    leftMas[leftpos] = mas[i];
+//                    leftpos++;
+//                }
+//
+//            }
+//        }
 
-
-
+        System.out.println(Arrays.toString(rightMas));
+        System.out.println(Arrays.toString(leftMas));
         return rightMas;
+
     }
 
 }
+
