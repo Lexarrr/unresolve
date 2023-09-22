@@ -38,18 +38,23 @@ public class Gifts {
 
         int count = 0;
 
-        if (x + y <= w) {
-            count++;
+
+        for (int i = 0; i <= w / x; i++) {
+            for (int j = 0; j <= w / y; j++) {
+                for (int k = 0; k <= w / z; k++) {
+                    int c = w - (i + j + k);
+                    if (c == w) {
+                        count++;
+                    }
+                }
+            }
+
         }
-        if (y+z <= w){
-            count++;
-        }
-        if (x+z <= w){
-            count++;
-        }
+
+
         wr.write(count);
         wr.close();
-        System.out.println(count);
+        System.out.println("COUNT: " + count);
 
     }
 

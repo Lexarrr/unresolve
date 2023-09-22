@@ -6,8 +6,6 @@ import java.util.Scanner;
 public class Legion {
     public static void main(String[] args) {
 
-//        divMas(toGetMas(toScan()));
-//        toGetMas(toScan());
         divMas(toGetMas(toScan()));
     }
 
@@ -34,65 +32,69 @@ public class Legion {
         return masLeg;
     }
 
-    public static int[] divMas(int[] mas) {
-        int length = mas.length;
-        if (length == 3) return mas;
-        int divide = length / 2;
-        int rightpos = 0;
-        int leftpos = 0;
-        int rightcount = 0;
-        int leftcount = 0;
-
-        for (int i = 0; i < mas.length; i++) {
-            if (i % 2 == 0) {
-                rightcount++;
-            } else {
-                leftcount++;
-            }
-        }
-        int[] rightMas = new int[rightcount];
-        int[] leftMas = new int[leftcount];
-
-        while (rightMas.length != 3 || leftMas.length != 3) {
-            for (int i = 0; i < mas.length; i++) {
-                if (i % 2 == 0) {
-                    rightMas[rightpos] = mas[i];
-                    rightpos++;
-                } else {
-                    leftMas[leftpos] = mas[i];
-                    leftpos++;
-                }
-            }
-        }
-
-//        while (rightMas.length != 3 || leftMas.length != 3){
-//            for (int i = 0; i < rightMas.length; i++) {
-//                if (i % 2 == 0) {
-//                    rightMas[rightpos] = mas[i];
-//                    rightpos++;
-//                } else {
-//                    leftMas[leftpos] = mas[i];
-//                    leftpos++;
-//                }
+//    public static int lenRMas(int[] mas) {
+//        int rightcount = 0;
 //
-//            }
-//            for (int i = 0; i < leftMas.length; i++) {
-//                if (i % 2 == 0) {
-//                    rightMas[rightpos] = mas[i];
-//                    rightpos++;
-//                } else {
-//                    leftMas[leftpos] = mas[i];
-//                    leftpos++;
-//                }
-//
+//        for (int i = 0; i < mas.length; i++) {
+//            if (i % 2 == 0) {
+//                rightcount++;
 //            }
 //        }
+//
+//        return rightcount;
+//    }
+
+    public static int divMas(int[] mas) {
+
+        int leftcount = 0;
+        int rightcount = 0;
+        int rightpos = 0;
+        int leftpos = 0;
+        int count = 0;
+
+
+
+
+        for (int i = 0; i < mas.length; i++) {
+            if (i % 2 != 0) {
+                leftcount++;
+            } else {
+                rightcount++;
+            }
+        }
+
+        int[] leftMas = new int[leftcount];
+        for (int i = 0; i < mas.length; i++) {
+            if (i % 2 != 0) {
+                leftMas[leftpos++] = mas[i];
+            }
+        }
+
+        int[] rightMas = new int[rightcount];
+        for (int i = 0; i < mas.length; i++) {
+            if (i % 2 == 0) {
+                rightMas[rightpos++] = mas[i];
+            }
+        }
+
+        if (mas.length < 3) return 0;
+        if (mas.length == 3) return 1;
+
 
         System.out.println(Arrays.toString(rightMas));
-        System.out.println(Arrays.toString(leftMas));
-        return rightMas;
 
+        System.out.println(Arrays.toString(leftMas));
+
+        divMas(leftMas);
+
+        divMas(rightMas);
+
+
+
+        return 1;
     }
 
 }
+
+
 
